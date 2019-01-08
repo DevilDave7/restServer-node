@@ -1,0 +1,16 @@
+{
+  "name": "restserver",
+  "version": "1.0.0",
+  "description": "nuevo servicio con mongo",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DevilDave",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
