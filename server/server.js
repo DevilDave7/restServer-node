@@ -1,46 +1,24 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
+const colors = require('colors');
 const bodyParser = require('body-parser');
 
-
 const app = express();
-const router = express.Router();
 
-app.use('/usuario',router);
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+app.use('/usuario', require('./routes/users'));
 
 
-router.route('/')
-.get((req,res)=>{
-    res.json("get usuario");
+mongoose.connect(process.env.urlDB,(err,res)=>{
+    if (err) throw colors.red(err);
+    console.log('database running'.green)
 })
-.post((req,res)=>{
-    res.json("post usuario");
-})
-.put((req,res)=>{
-    res.json("put usuario")
-})
-.delete((req,res)=>{
-    res.json("delete usuario");
-});
 
-
-
-app.post('/usuariox/:id',(req,res)=>{
-    let body = req.body;
-
-    if(body.name === undefined){
-        res.status(400).json({ok:false,message:'El nombre es necesario'})
-    }else{
-        res.status(201).json({
-            person:body
-            })
-    }
-
-})
 
 app.listen(process.env.PORT,()=>{
    console.log(`Running by ${process.env.PORT}`)
