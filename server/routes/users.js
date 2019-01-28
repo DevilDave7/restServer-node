@@ -15,6 +15,7 @@ router.route('/')
         error:err})) */
         let page = Number(req.query.page || 1);
         let limit = Number(req.query.limit || 4);
+        req.query.page = page;
         if(page > 0){
             page = (page-1)*limit;
         }
